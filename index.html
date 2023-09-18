@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <style>
+    body {
+      margin-top: 50px;
+    }
+    .red {
+      background-color: yellow;
+      height: 250px;
+      width: 250px;
+    }
+    .green {
+      background-color: rgb(9, 87, 9);
+      height: 250px;
+      width: 250px;
+    }
+    .item {
+      padding-top: 5px;
+      height: 25px;
+      background-color: gray;
+      margin-bottom: 10px;
+      width: 50%;
+      margin-left: 20%;
+      list-style: none;
+      text-align: center;
+      border-radius: 5px;
+    }
+    body {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 20px;
+    }
+  </style>
+  <body>
+    <div class="red" id="area" draggable="true"></div>
+    <div class="green" id="greanArea">
+      <li class="item" draggable="true">1</li>
+      <li class="item" draggable="true">2</li>
+      <li class="item" draggable="true">3</li>
+      <li class="item" draggable="true">4</li>
+      <li class="item" draggable="true">5</li>
+      <li class="item" draggable="true">6</li>
+    </div>
+    <script>
+      let selected = null;
+
+      let green = document.querySelectorAll(".item");
+      for (var i = 0; i < green.length; i++) {
+        green[i].addEventListener("dragstart", function (e) {
+          selected = e.target;
+        });
+      }
+      let red = document.getElementById("area");
+      red.addEventListener("dragover", function (e) {
+        e.preventDefault();
+      });
+      red.addEventListener("drop", function (e) {
+        e.preventDefault();
+        if (selected) {
+          red.appendChild(selected);
+          selected = null;
+        }
+      });
+      let greenC = document.getElementById("greanArea");
+      greenC.addEventListener("dragover", function (e) {
+        e.preventDefault();
+      });
+      greenC.addEventListener("drop", function (e) {
+        e.preventDefault();
+        if (selected) {
+          greenC.appendChild(selected);
+          selected = null;
+        }
+      });
+    </script>
+  </body>
+</html>
